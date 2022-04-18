@@ -41,7 +41,7 @@ def last_name(*args: str):
     elif args[0].__class__.__name__ != "str":
         raise InvalidArgumentType("Function takes only string as an argument")
     if len(args[0]) < 3:
-        raise LengthError("The first name should contain 3 or more letters")
+        raise LengthError("The last name should contain 3 or more letters")
     pattern = "^[A-Z]{1}[a-z]{2,}$"
     return bool(re.fullmatch(pattern, args[0]))
 
@@ -63,3 +63,11 @@ def valid_mobile_no(*args: str):
     pattern = "^(91)[\\s]{1}[1-9]{1}[0-9]{9}$"
     return bool(re.fullmatch(pattern, args[0]))
 
+
+def valid_password(*args: str):
+    if len(args) == 0:
+        raise MissingValueError("Function doesn't take the missing value as param")
+    elif args[0].__class__.__name__ != "str":
+        raise InvalidArgumentType("Function takes only string as an argument")
+    if len(args[0]) < 8:
+        raise LengthError("The password should contain 8 or more chars")
