@@ -68,6 +68,17 @@ class TestUserRegistration(unittest.TestCase):
         self.assertEqual(valid_mobile_no("jayesh.dahiwale@bl.co"), False)
         self.assertEqual(valid_mobile_no("91 7066944829"), True)
 
+    def test_password_invalid_argument(self):
+        with self.assertRaises(InvalidArgumentType):
+            valid_password(11)
+
+    def test_password_length_error(self):
+        with self.assertRaises(LengthError):
+            valid_password("ja")
+
+    def test_password_missing(self):
+        with self.assertRaises(MissingValueError):
+            valid_password()
 
 
 
