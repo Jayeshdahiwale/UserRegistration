@@ -80,6 +80,10 @@ class TestUserRegistration(unittest.TestCase):
         with self.assertRaises(MissingValueError):
             valid_password()
 
+    def test_pattern_valid_password(self):
+        self.assertEqual(valid_password("wewegwegw"), False)
+        self.assertEqual(valid_password("Jayesh@2017"), True)
+
 
 
 
