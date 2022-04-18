@@ -6,9 +6,23 @@
 @Title : User Registration Problems
 """
 import unittest
+import functools
 
 from user_registration import *
+def sub_test(param_list):
+    """Decorates a test case to run it as a set of subtests."""
 
+    def decorator(f):
+
+        @functools.wraps(f)
+        def wrapped(self):
+            for param in param_list:
+                with self.subTest(**param):
+                    f(self, **param)
+
+        return wrapped
+
+    return decorator
 
 class TestUserRegistration(unittest.TestCase):
     def test_f_name_invalid_argument(self):
@@ -56,6 +70,12 @@ class TestUserRegistration(unittest.TestCase):
     def test_pattern_valid_email(self):
         self.assertEqual(valid_email("jayesh.dahiwale@bl.co"), True)
 
+    @sub_test([
+        dict(test_input='a', expected_output=False)
+    ])
+    def test_parameterized_valid_email(self,test_input,expected_output):
+        self.assertEqual(valid_email(test_input), expected_output)
+
     def test_mobile_no_invalid_argument(self):
         with self.assertRaises(InvalidArgumentType):
             valid_mobile_no(11)
@@ -83,8 +103,6 @@ class TestUserRegistration(unittest.TestCase):
     def test_pattern_valid_password(self):
         self.assertEqual(valid_password("Jayeshes"), False)
         self.assertEqual(valid_password("Jayesh2017"), True)
-
-
 
 
 if __name__ == "__main__":
