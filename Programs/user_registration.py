@@ -28,3 +28,10 @@ def first_name(*args: str):
     return bool(re.fullmatch(pattern, args[0]))
 
 
+def last_name(*args: str):
+    if len(args) == 0:
+        raise MissingValueError("Function doesn't take the missing value as param")
+    if len(args[0]) < 3:
+        raise LengthError("The first name should contain 3 or more letters")
+    pattern = "[A-Z]{1}[a-z]{2,}?"
+    return bool(re.fullmatch(pattern, args[0]))
