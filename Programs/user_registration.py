@@ -71,6 +71,6 @@ def valid_password(*args: str):
         raise InvalidArgumentType("Function takes only string as an argument")
     if len(args[0]) < 8:
         raise LengthError("The password should contain 8 or more chars")
-    pattern = "^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$"
+    pattern = "^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^.,:;'!@#$%^&*_+=]).{8,}$"
     return bool(re.fullmatch(pattern, args[0]))
 
