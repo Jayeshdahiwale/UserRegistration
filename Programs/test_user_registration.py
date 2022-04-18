@@ -82,7 +82,7 @@ class TestUserRegistration(unittest.TestCase):
 
     def test_pattern_valid_password(self):
         self.assertEqual(valid_password("Jayeshes"), False)
-        self.assertEqual(valid_password("Jayesh@2017"), True)
+        self.assertEqual(valid_password("Jayesh2017"), True)
 
 
 
