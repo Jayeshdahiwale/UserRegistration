@@ -10,8 +10,6 @@ import logging
 import sys
 from user_registration import *
 
-logging.basicConfig(level=logging.INFO, format="%(levelname)s:%(ascitime)s:%(message)s",
-                    handlers=[logging.FileHandler("sample.log"), logging.StreamHandler(sys.stdout)])
 
 
 class TestUserRegistration(unittest.TestCase):
