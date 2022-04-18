@@ -53,8 +53,23 @@ class TestUserRegistration(unittest.TestCase):
         with self.assertRaises(MissingValueError):
             valid_email()
 
-    def test_pattern_valid_name(self):
+    def test_pattern_valid_email(self):
         self.assertEqual(valid_email("jayesh.dahiwale@bl.co"), True)
+
+    def test_mobile_no_invalid_argument(self):
+        with self.assertRaises(InvalidArgumentType):
+            valid_mobile_no(11)
+
+    def test_mobile_no_missing(self):
+        with self.assertRaises(MissingValueError):
+            valid_mobile_no()
+
+    def test_pattern_valid_mobile_no(self):
+        self.assertEqual(valid_mobile_no("jayesh.dahiwale@bl.co"), False)
+        self.assertEqual(valid_mobile_no("91 7066944829"), True)
+
+
+
 
 
 if __name__ == "__main__":
